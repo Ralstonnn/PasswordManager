@@ -1,14 +1,23 @@
 # A Python3 Program to generate OTP (One Time Password)
-import random
-import os
-import getpass
-import argparse
+from GDriveBackup.GDriveBackup import google_drive_upload_file
 from cryptography.fernet import Fernet
+import argparse
+import getpass
+import random
+import sys
+import os
+
+
+MyPasswordsDir = os.path.join(
+    'C:\\', 'Users', f'{getpass.getuser()}', 'AppData', 'Roaming', 'MyPasswords')
+if not os.path.exists(MyPasswordsDir):
+    print('You need to run "KeyForPasswordDecryption.py" first')
+    sys.exit()
 
 
 # Encryption key
 # Pass a path to directory that encryption-key-file is saved in, and a name of the file with it's extention
-with open(fr'', 'rb') as f:
+with open(fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\Key.key', 'rb') as f:
     key = f.read()
 
 fer = Fernet(key)
@@ -28,14 +37,18 @@ parser.add_argument('-dp', '--decypherpassword',
                     help='If you want to decypher password just use this function. \
                         Dont forget to pass a password as a string',
                     type=str, default='')
+parser.add_argument('-gb', '--googlebackup', action='store_true',
+                    help='If you want to backup file to Google Drive call this function',
+                    default=False)
+
 args = parser.parse_args()
 
 
 # Pass a path to directory that log-file should be saved in, and a name of the file with it's extention
-log_file_directory = fr''
+log_file_directory = fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\MyPasswords.txt'
 
 # Pass a path to directory that file with passwords should be saved in, and a name of the file with it's extention
-file_for_user = fr''
+file_for_user = fr'D:\MyPasswords\Passwords.txt'
 
 OTPSet = set()
 
@@ -111,7 +124,17 @@ def Main():
         print(CreateNewPassword(args.whatpasswordfor))
 
     if args.decypherpassword != '':
-        print(Decypher(args.decipherpassword))
+        print(Decypher(args.decypherpassword))
+
+    if args.googlebackup:
+        """
+        In order for google backup to work you need to pass a path to folder with
+        credential and token to "FOLDER_WITH_TOKEN_AND_CREDENTIAL" variable, if you 
+        dont have a token it will be generated automaticly.
+
+        Also you need to pass a path to file with passwords to "google_drive_upload_file" method
+        """
+        google_drive_upload_file(r'D:\MyPasswords\Passwords.txt')
 
 
 # Methon that's called if code was run directly

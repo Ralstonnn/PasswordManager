@@ -10,17 +10,13 @@ parser = argparse.ArgumentParser(
     description="This programm creates a key to encrypt passwords/message or something else :)")
 parser.add_argument('p', type=str, help='Enter your password to create a key')
 args = parser.parse_args()
+
 password_provided = args.p
 password = password_provided.encode()
 
-'''
-To create a salt run this commands in python IDLE: 
-    import os 
-    os.urandom(16)
-'''
-# Enter your salt for programm to work
-salt = ''
 
+# Enter your salt for programm to work
+salt = b'\xea%\xa9\xb2\xef\xe0\xcc\x95\xf5\x83\x02\xf46\xb0\xaf='
 kdf = PBKDF2HMAC(algorithm=hashes.SHA256,
                  length=32,
                  salt=salt,
@@ -28,7 +24,12 @@ kdf = PBKDF2HMAC(algorithm=hashes.SHA256,
                  backend=default_backend())
 key = base64.urlsafe_b64encode(kdf.derive(password))
 
-# Pass a path to directory that encryption-key-file will be saved in, and a name of the file with it's extention
-with open(fr'', 'wb') as f:
+
+MyPasswordsDir = os.path.join(
+    'C:\\', 'Users', f'{getpass.getuser()}', 'AppData', 'Roaming', 'MyPasswords')
+if not os.path.exists(MyPasswordsDir):
+    os.mkdir(MyPasswordsDir)
+
+with open(fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\Key.key', 'wb') as f:
     f.write(key)
 print(key)
