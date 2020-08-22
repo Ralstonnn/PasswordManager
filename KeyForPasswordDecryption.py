@@ -26,10 +26,10 @@ key = base64.urlsafe_b64encode(kdf.derive(password))
 
 
 PasswordsDir = os.path.join(
-    '/home/ralstonnn/Passwords')
+    '/home/"yourUsername"/Passwords')
 if not os.path.exists(PasswordsDir):
     os.mkdir(PasswordsDir)
 
-with open(fr'/home/ralstonnn/Passwords/Key.key', 'wb') as f:
+with open(fr'/home/"yourUsername"/Passwords/Key.key', 'wb') as f:
     f.write(key)
 print(key)

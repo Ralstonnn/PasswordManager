@@ -8,7 +8,7 @@ import os
 
 
 MyPasswordsDir = os.path.join(
-    '/home/ralstonnn/Passwords')
+    '/home/"yourUsername"/Passwords')
 if not os.path.exists(MyPasswordsDir):
     print('You need to run "KeyForPasswordDecryption.py" first')
     sys.exit()
@@ -16,7 +16,7 @@ if not os.path.exists(MyPasswordsDir):
 
 # Encryption key
 # Pass a path to directory that encryption-key-file is saved in, and a name of the file with it's extention
-with open(fr'/home/ralstonnn/Passwords/Key.key', 'rb') as f:
+with open(fr'/home/"yourUsername"/Passwords/Key.key', 'rb') as f:
     key = f.read()
 
 fer = Fernet(key)
@@ -44,10 +44,10 @@ args = parser.parse_args()
 
 
 # Pass a path to directory that log-file should be saved in, and a name of the file with it's extention
-log_file_directory = fr'/home/ralstonnn/Passwords/MyPasswords.txt'
+log_file_directory = fr'/home/"yourUsername"/Passwords/MyPasswords.txt'
 
 # Pass a path to directory that file with passwords should be saved in, and a name of the file with it's extention
-file_for_user = fr'/home/ralstonnn/Passwords/Passwords.txt'
+file_for_user = fr'/home/"yourUsername"/Passwords/Passwords.txt'
 
 OTPSet = set()
 
@@ -134,7 +134,8 @@ def Main():
         Also you need to pass a path to file with passwords to "google_drive_upload_file" method
         """
         from GDriveBackup.GDriveBackup import google_drive_upload_file
-        google_drive_upload_file(r'/home/ralstonnn/Passwords/Passwords.txt')
+        google_drive_upload_file(
+            r'/home/"yourUsername"/Passwords/Passwords.txt')
 
 
 # Methon that's called if code was run directly
