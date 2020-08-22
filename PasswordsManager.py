@@ -1,4 +1,5 @@
 # A Python3 Program to generate OTP (One Time Password)
+from GDriveBackup.GDriveBackup import google_drive_upload_file
 from cryptography.fernet import Fernet
 import argparse
 import getpass
@@ -8,7 +9,7 @@ import os
 
 
 MyPasswordsDir = os.path.join(
-    '/home/ralstonnn/Passwords')
+    'C:\\', 'Users', f'{getpass.getuser()}', 'AppData', 'Roaming', 'MyPasswords')
 if not os.path.exists(MyPasswordsDir):
     print('You need to run "KeyForPasswordDecryption.py" first')
     sys.exit()
@@ -16,7 +17,7 @@ if not os.path.exists(MyPasswordsDir):
 
 # Encryption key
 # Pass a path to directory that encryption-key-file is saved in, and a name of the file with it's extention
-with open(fr'/home/ralstonnn/Passwords/Key.key', 'rb') as f:
+with open(fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\Key.key', 'rb') as f:
     key = f.read()
 
 fer = Fernet(key)
@@ -44,10 +45,10 @@ args = parser.parse_args()
 
 
 # Pass a path to directory that log-file should be saved in, and a name of the file with it's extention
-log_file_directory = fr'/home/ralstonnn/Passwords/MyPasswords.txt'
+log_file_directory = fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\MyPasswords.txt'
 
 # Pass a path to directory that file with passwords should be saved in, and a name of the file with it's extention
-file_for_user = fr'/home/ralstonnn/Passwords/Passwords.txt'
+file_for_user = fr'D:\MyPasswords\Passwords.txt'
 
 OTPSet = set()
 
@@ -133,8 +134,7 @@ def Main():
 
         Also you need to pass a path to file with passwords to "google_drive_upload_file" method
         """
-        from GDriveBackup.GDriveBackup import google_drive_upload_file
-        google_drive_upload_file(r'/home/ralstonnn/Passwords/Passwords.txt')
+        google_drive_upload_file(r'D:\MyPasswords\Passwords.txt')
 
 
 # Methon that's called if code was run directly
