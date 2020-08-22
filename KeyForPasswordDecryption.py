@@ -25,11 +25,11 @@ kdf = PBKDF2HMAC(algorithm=hashes.SHA256,
 key = base64.urlsafe_b64encode(kdf.derive(password))
 
 
-MyPasswordsDir = os.path.join(
-    'C:\\', 'Users', f'{getpass.getuser()}', 'AppData', 'Roaming', 'MyPasswords')
-if not os.path.exists(MyPasswordsDir):
-    os.mkdir(MyPasswordsDir)
+PasswordsDir = os.path.join(
+    '/home/ralstonnn/Passwords')
+if not os.path.exists(PasswordsDir):
+    os.mkdir(PasswordsDir)
 
-with open(fr'C:\Users\{getpass.getuser()}\AppData\Roaming\MyPasswords\Key.key', 'wb') as f:
+with open(fr'/home/ralstonnn/Passwords/Key.key', 'wb') as f:
     f.write(key)
 print(key)

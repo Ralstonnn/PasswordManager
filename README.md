@@ -1,4 +1,4 @@
-# Safe Password Manager
+# Password Manager
 
 This console program is created to help you with your passwords. It can help you create a password encrypt it and the decrypt when needed.
 
