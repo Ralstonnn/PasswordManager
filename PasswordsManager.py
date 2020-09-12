@@ -1,5 +1,4 @@
 # A Python3 Program to generate OTP (One Time Password)
-from GDriveBackup.GDriveBackup import google_drive_upload_file
 from cryptography.fernet import Fernet
 import argparse
 import getpass
@@ -127,6 +126,7 @@ def Main():
         print(Decypher(args.decypherpassword))
 
     if args.googlebackup:
+        from GDriveBackup.GDriveBackup import google_drive_upload_file
         """
         In order for google backup to work you need to pass a path to folder with
         credential and token to "FOLDER_WITH_TOKEN_AND_CREDENTIAL" variable, if you 
