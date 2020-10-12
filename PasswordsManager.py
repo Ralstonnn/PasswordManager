@@ -128,7 +128,7 @@ def Main():
         print(CreateNewPassword(args.whatpasswordfor))
 
     if args.decypherpassword != '':
-        print(Decypher(args.decypherpassword))
+        print(f'\nDecyphered password: {Decypher(args.decypherpassword)}\n')
 
     if args.googlebackup:
         from GDriveBackup.GDriveBackup import google_drive_upload_file
