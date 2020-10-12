@@ -13,6 +13,10 @@ if not os.path.exists(MyPasswordsDir):
     print('You need to run "KeyForPasswordDecryption.py" first')
     sys.exit()
 
+PasswordForUser = os.path.join('D:\\', 'MyPasswords')
+if not os.path.exists(PasswordForUser):
+    os.mkdir(PasswordForUser)
+
 
 # Encryption key
 # Pass a path to directory that encryption-key-file is saved in, and a name of the file with it's extention
