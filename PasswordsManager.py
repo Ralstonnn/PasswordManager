@@ -73,7 +73,6 @@ def ClearLogFile():
 
 # A Function to generate a unique OTP everytime
 def generateOTP(length):
-
     # All possible characters of my OTP
     str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     n = len(str)
@@ -123,7 +122,6 @@ def Decypher(passwordToD):
 
 
 def Main():
-
     if args.createpassword:
         print(CreateNewPassword(args.whatpasswordfor))
 
